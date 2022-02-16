@@ -2,8 +2,8 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>TODO App</title>
-  <meta content="" name="descriptison">
+  <title>Smash That Emoji!</title>
+  <meta content="" name="description">
   <meta content="" name="keywords">
 
   <!-- Favicons -->
@@ -43,17 +43,34 @@
 
           <div class="col-lg-12 portfolio-info">
             <br>
-            <h2 style="color:#12d640">To-Do app</h2>
+            <h2 style="color:#12d640">Smash That Emoji!</h2>
+            <h4>Created for the 48th Caritas Macau Charity Bazaar</h4>
 
             <ul>
-              <li><strong>Tech Stack</strong>: Django, Python, Heroku, SQlite, HTML, CSS, AWS(EC2)</li>
-              <li><strong>Website URL(Heroku)</strong>: <a href="https://todo-awesome-app.herokuapp.com/" target="_blank">Link</a></li>
-              <li><strong>Website URL(AWS)</strong>: <a href="http://ec2-18-224-64-135.us-east-2.compute.amazonaws.com/" target="_blank">Link</a></li>
-              <li><strong>Github URL</strong>: <a href="https://github.com/rajaprerak/todo_webapp" target="_blank">Project Link</a></li>
+              <li><strong>Tech Stack</strong>: C++, Arduino</li>
+<!--              <li><strong>Demo URL</strong>: <a href="https://www.youtube.com/watch?v=CBaYDfX2DwA" target="_blank">Link</a></li>-->
+              <li><strong>Github URL</strong>: <a href="https://github.com/DoraMemo-x/ReactionGame" target="_blank">Project Link</a></li>
             </ul>
 
             <p>
-              Django based app which contains mainly 3 functionalities. User can add the task. Update the task and delete the task.            
+              In the electrical/mechanical department of my high school, it is a tradition to make simple games with some form of engineering.
+            </p>
+            <p>
+              Under my teacher's supervision, I chose to make a reaction-based arcade style game, similar to wack-a-mole. When a light lights up, the player presses its button.
+            </p>
+            <p>
+              What seems like a simple core mechanic can be extended into different game modes. For single-player, the player has to get X points before the time runs out. If the player gets past the threshold, they reach the next stage - this repeats 3 times until a "frenzy" happens. Frenzy lasts 5 seconds; during frenzy, each correct input is worth 2 points, but one incorrect input terminates the frenzy.
+            </p>
+            <p>
+              For multiplayer, a "tug-of-war" 1v1 mode was implemented. Each player control half of the board, each correct input "pulls the rope" towards them for 1 unit, and they win if they have a large enough lead in score. If the players are similar in skill, deathmatch initiates - the first player that gets 5 correct inputs wins, but one incorrect input loses them the game.
+            </p>
+            <p>
+              The physical position of the buttons can be changed for customisability.
+              In fact, since the event lasted for 2 days, I changed the setup for the next day so players from the previous day would get a fresh experience - muscle memory will not take over for them.
+            </p>
+            <p>
+              At the event, a scoreboard was kept on a whiteboard to encourage players to try their absolute best.
+              It was also tricky to balance the game for the general audience since the skill range was so wide. I was on standby both days so that I can tune the values in the program and hot-reload it on the fly.
             </p>
           </div>
 
@@ -64,7 +81,6 @@
   </main><!-- End #main -->
 
  <!-- Vendor JS Files -->
-  <script async="" src="//www.google-analytics.com/analytics.js"></script><script src="assets/vendor/jquery/jquery.min.js"></script>
   <script src="../assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
   <script src="../assets/vendor/jquery.easing/jquery.easing.min.js"></script>
   <script src="../assets/vendor/php-email-form/validate.js"></script>
@@ -76,8 +92,6 @@
 
   <!-- Template Main JS File -->
   <script src="../assets/js/main.js"></script>
-
-  <script>if( window.self == window.top ) { (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){ (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o), m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m) })(window,document,'script','//www.google-analytics.com/analytics.js','ga'); ga('create', 'UA-55234356-4', 'auto'); ga('send', 'pageview'); } </script>
 
 </body>
 </html>
