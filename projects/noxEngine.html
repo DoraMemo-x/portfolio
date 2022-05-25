@@ -44,20 +44,57 @@
           <div class="col-lg-12 portfolio-info">
             <br>
             <h2 style="color:#12d640">Nox Engine</h2>
-            <h4>Masters Group Project - In Progress</h4>
+            <h4>Masters Group Project</h4>
 
             <ul>
-              <li><strong>Tech Stack</strong>: C++, Modern OpenGL, ImGUI, FMod</li>
-              <!-- <li><strong>Demo URL</strong>: <a href="https://doramemo-x.github.io/aumix" target="_blank">Link</a></li> -->
-              <!-- <li><strong>Github URL</strong>: <a href="https://github.com/doramemo-x/aumix" target="_blank">Project Link</a></li> -->
+              <li><strong>Language:</strong> C++</li>
+              <li><strong>Libraries:</strong> OpenGL 4.5, GLFW, GLM, ImGUI, FMOD (used by other team members: GLAD, Assimp, ImGuizmo, Luabridge) </li>
+              <li><strong>Demo Video:</strong> <a href="https://drive.google.com/file/d/1r755BlgarJ-xewidYqLGkA96YFICzn-q" target="_blank">Link</a></li>
+              <li><strong>Code Repository:</strong>: Available upon request - will be made public once marking is over.</li>
             </ul>
 
             <p>
-              For the masters group project, we are implementing a game engine for 3D card games. Our group of 6 members is currently dividing the work into distinct areas: rendering, animation, audio, resource management, and scripting.
+              For the masters group project, we wanted to implement a game engine for 3D card games (e.g. Inscryption), but it ended up as an incomplete, generic game engine as of now. Our group of 6 members divided the work into distinct areas: ECS, rendering, animation, audio, resource management, and scripting, but this distinction was less clear further into development (i.e. everyone helped with several areas).
+
+              I was responsible for the audio engine, UI and ECS (Entity-Component System).
             </p>
+            <br>
+
+            <h4>Audio Engine</h4>
             <p>
-              I am responsible for the audio part, which involves setting up 3D audio using fmod and implementing interactive environmental reverb. I am also looking to take part in the rendering and the scripting. 
+              The reasoning behind implementing an audio engine is that audio is usually overshadowed by graphics, but it plays a major role in immersive gameplay. I based the structure of the audio engine on Guy Somberg's talk from ADC 18, which is easily extensible for more features and forms the basis of the audio engine for several shipped games. It uses FMOD as the middleware as per industry standard; spatial audio, audio occlusion and DSP filters were implemented. 
+
+              For the occlusion geometry, the user can generate a bounding box from the existing model to speed up development, or load in a model if more precise control is needed. 
+
+          	  <img src="../assets/img/project/nox/occlusion.gif" class="img-fluid" alt="Occlusion Geometry">
+
+              In terms of DSP filters, a subset of the built-in filters from FMOD are included, namely distortion, echo, fader, flange, limiter, pitch shift, and tremolo. The user can create a chain of these filters and reorder them after creation. The chain of filters will be applied during runtime by FMOD when the audio source plays.
+
+          	  <img src="../assets/img/project/nox/dsp.jpg" class="img-fluid" alt="DSP Filters">
             </p>
+            <br>
+
+            <h4>UI</h4>
+            <p>
+              The UI is created using Dear ImGUI. Using the docking branch, the panels are "pre-docked" once the engine is launched. The ratio between each panel can be adjusted via mouse drag, and each panel can be relocated and grouped with other panels. 
+
+          	  <img src="../assets/img/project/nox/ui.gif" class="img-fluid" alt="UI">
+
+              In the code repository, each panel is contained in its own function for clarity and extensibility for the overall UI.
+
+          	  <!-- <img src="../assets/img/project/nox/UI-code.png" class="img-fluid" alt="UI Code"> -->
+            </p>
+            <br>
+
+            <h4>ECS</h4>
+            <p>
+              My last major contribution is the ECS system. Although it is by no means efficient, it is functional. Each entity has a unique, monotonically increasing ID used for lookup using a STL map (hash tree). A major design decision is that an entity cannot contain another entity - this is the reason why ECS is employed in the first place - to reduce code complexity. However, this later proved to be not as intuitive from the end user's perspective (e.g. you should be able to group all sound sources into one parent entity).
+
+              Each component type is hard-coded as a C++ class and their `type_index` is used as the key for efficient lookup. An entity can contain at most one of each component type, so `entity->getComp<ComponentType>()` would either return a pointer to the unique component in this entity, or a `nullptr`. 
+              To check the existence of a (or multiple) component type for an entity, one could call `entity->hasComp<ComponentTypeA, ComponentTypeB, ...>()` (i.e. a variadic templated function). The implementation checks a bitmask for efficiency.
+
+              The user can drag in "preset object" into the scene to speed up development. These are, for example, simple shapes like cubes and spheres (transform + renderable component), or audio sources (transform + audio source component).   
+        	</p>
           </div>
 
         </div>
