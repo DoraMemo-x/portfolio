@@ -68,11 +68,12 @@
             </p>
       	  	<img src="../assets/img/project/nox/occlusion.gif" class="img-fluid" alt="Occlusion Geometry">
 
+            <br>
+
             <p>
               In terms of DSP filters, a subset of the built-in filters from FMOD are included, namely distortion, echo, fader, flange, limiter, pitch shift, and tremolo. The user can create a chain of these filters and reorder them after creation. The chain of filters will be applied during runtime by FMOD when the audio source plays.
             </p>
       	  	<img src="../assets/img/project/nox/dsp.jpg" class="img-fluid" alt="DSP Filters">
-
             <br>
 
             <h4>UI</h4>
@@ -81,6 +82,7 @@
             </p>
 
       	  	<img src="../assets/img/project/nox/ui.gif" class="img-fluid" alt="UI">
+            <br>
 
             <p>
               In the code repository, each panel is contained in its own function for clarity and extensibility for the overall UI.
@@ -91,10 +93,14 @@
             <h4>ECS</h4>
             <p>
               My last major contribution is the ECS system. Although it is by no means efficient, it is functional. Each entity has a unique, monotonically increasing ID used for lookup using a STL map (hash tree). A major design decision is that an entity cannot contain another entity - this is the reason why ECS is employed in the first place - to reduce code complexity. However, this later proved to be not as intuitive from the end user's perspective (e.g. you should be able to group all sound sources into one parent entity).
+        	</p>
 
+            <p>
               Each component type is hard-coded as a C++ class and their `type_index` is used as the key for efficient lookup. An entity can contain at most one of each component type, so `entity->getComp<ComponentType>()` would either return a pointer to the unique component in this entity, or a `nullptr`. 
               To check the existence of a (or multiple) component type for an entity, one could call `entity->hasComp<ComponentTypeA, ComponentTypeB, ...>()` (i.e. a variadic templated function). The implementation checks a bitmask for efficiency.
+			</p>
 
+            <p>
               The user can drag in "preset object" into the scene to speed up development. These are, for example, simple shapes like cubes and spheres (transform + renderable component), or audio sources (transform + audio source component).   
         	</p>
           </div>
