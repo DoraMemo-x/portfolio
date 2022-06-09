@@ -96,9 +96,9 @@
         	</p>
 
             <p>
-              Each component type is hard-coded as a C++ class and their `type_index` is used as the key for efficient lookup. An entity can contain at most one of each component type, so `entity->getComp<ComponentType>()` would either return a pointer to the unique component in this entity, or a `nullptr`. 
-              To check the existence of a (or multiple) component type for an entity, one could call `entity->hasComp<ComponentTypeA, ComponentTypeB, ...>()` (i.e. a variadic templated function). The implementation checks a bitmask for efficiency.
-			</p>
+              Each component type is hard-coded as a C++ class and their `type_index` is used as the key for efficient lookup. An entity can contain at most one of each component type, so `entity->getComp&lt;ComponentType&gt;()` would either return a pointer to the unique component in this entity, or a `nullptr`. 
+              To check the existence of a (or multiple) component type for an entity, one could call `entity->hasComp&lt;ComponentTypeA, ComponentTypeB, ...&gt;()` (i.e. a variadic templated function). The implementation checks a bitmask for efficiency.
+		        </p>
 
             <p>
               The user can drag in "preset object" into the scene to speed up development. These are, for example, simple shapes like cubes and spheres (transform + renderable component), or audio sources (transform + audio source component).   
